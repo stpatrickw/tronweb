@@ -104,6 +104,7 @@ export interface TriggerSmartContract {
     call_token_value?: number;
     token_id?: number;
     data?: string;
+    timestamp?: number;
 }
 
 export interface FreezeBalanceContract {

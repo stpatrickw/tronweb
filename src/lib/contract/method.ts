@@ -9,6 +9,7 @@ export interface CallOptions {
     feeLimit?: number;
     callValue?: number;
     callTokenValue?: number;
+    timestamp?: number;
     callTokenId?: number;
     userFeePercentage?: number;
     shouldPollResponse?: boolean;
@@ -21,6 +22,7 @@ export interface SendOptions {
     from?: string | false;
     feeLimit?: number;
     callValue?: number;
+    timestamp?: number;
     rawParameter?: string;
     userFeePercentage?: number;
     shouldPollResponse?: boolean;

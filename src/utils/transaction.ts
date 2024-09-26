@@ -159,6 +159,7 @@ const buildTriggerSmartContract = (value, options) => {
         call_token_value,
         token_id,
         data,
+        timestamp
     } = value;
     triggerSmartContract.setOwnerAddress(fromHexString(owner_address));
     triggerSmartContract.setContractAddress(fromHexString(contract_address));
@@ -172,6 +173,9 @@ const buildTriggerSmartContract = (value, options) => {
 
     if (token_id) {
         triggerSmartContract.setTokenId(token_id);
+    }
+    if (timestamp) {
+        triggerSmartContract.setTimestamp(timestamp);
     }
     if (call_token_value) {
         triggerSmartContract.setCallTokenValue(call_token_value);

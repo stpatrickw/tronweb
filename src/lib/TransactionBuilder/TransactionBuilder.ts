@@ -1004,7 +1004,8 @@ export class TransactionBuilder {
         tokenValue?: number,
         tokenId?: string,
         callValue?: number,
-        feeLimit?: number
+        feeLimit?: number,
+        timestamp?: number
     ) {
         const args: IArgs = {
             contract_address: toHex(contractAddress),
@@ -1076,6 +1077,7 @@ export class TransactionBuilder {
         }
 
         args.call_value = parseInt(callValue as number);
+        args.timestamp = parseInt(timestamp as number);
         if (isNotNullOrUndefined(tokenValue)) args.call_token_value = parseInt(tokenValue as number);
         if (isNotNullOrUndefined(tokenId)) args.token_id = parseInt(tokenId as string);
 
@@ -1097,7 +1099,7 @@ export class TransactionBuilder {
         parameters: ContractFunctionParameter[] = [],
         issuerAddress = this.tronWeb.defaultAddress.hex as string
     ) {
-        const { tokenValue, tokenId, callValue, feeLimit } = Object.assign(
+        const { tokenValue, tokenId, callValue, timestamp, feeLimit } = Object.assign(
             {
                 callValue: 0,
                 feeLimit: this.tronWeb.feeLimit,
@@ -1116,6 +1118,12 @@ export class TransactionBuilder {
                 name: 'callValue',
                 type: 'integer',
                 value: callValue,
+                gte: 0,
+            },
+            {
+                name: 'timestamp',
+                type: 'integer',
+                value: timestamp,
                 gte: 0,
             },
             {
@@ -1159,7 +1167,8 @@ export class TransactionBuilder {
             tokenValue,
             tokenId,
             callValue,
-            feeLimit
+            feeLimit,
+            timestamp
         );
 
         if (args.function_selector) {
@@ -1172,6 +1181,9 @@ export class TransactionBuilder {
         };
         if (args.call_value) {
             value.call_value = args.call_value;
+        }
+        if (args.timestamp) {
+            value.timestamp = args.timestamp;
         }
         if (args.call_token_value) {
             value.call_token_value = args.call_token_value;
@@ -1205,7 +1217,7 @@ export class TransactionBuilder {
         parameters: ContractFunctionParameter[] = [],
         issuerAddress: string = this.tronWeb.defaultAddress.hex as string
     ) {
-        const { tokenValue, tokenId, callValue, feeLimit } = Object.assign(
+        const { tokenValue, tokenId, callValue, timestamp, feeLimit } = Object.assign(
             {
                 callValue: 0,
                 feeLimit: this.tronWeb.feeLimit,
@@ -1223,6 +1235,12 @@ export class TransactionBuilder {
                 name: 'callValue',
                 type: 'integer',
                 value: callValue,
+                gte: 0,
+            },
+            {
+                name: 'timestamp',
+                type: 'integer',
+                value: timestamp,
                 gte: 0,
             },
             {
@@ -1265,7 +1283,8 @@ export class TransactionBuilder {
             tokenValue,
             tokenId,
             callValue,
-            feeLimit
+            feeLimit,
+            timestamp
         );
 
         let pathInfo = 'triggersmartcontract';

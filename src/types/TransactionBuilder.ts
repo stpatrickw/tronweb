@@ -89,6 +89,10 @@ export interface TriggerSmartContractOptions extends TransactionCommonOptions {
      */
     callValue?: number;
     /**
+     * Timestamp
+     */
+    timestamp?: number;
+    /**
      * The id of trc10 token transfer to the contract (Optional)
      */
     tokenId?: string;
